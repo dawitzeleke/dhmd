@@ -1,18 +1,18 @@
 import 'package:dhmd/app/components/auth/auth_shell.dart';
+import 'package:dhmd/app/routes/app_pages.dart';
 import 'package:dhmd/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/login_controller.dart';
-import '../../../routes/app_pages.dart';
+import '../controllers/new_password_controller.dart';
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
+class NewPasswordView extends GetView<NewPasswordController> {
+  const NewPasswordView({super.key});
 
   InputDecoration _fieldDecoration({
     required String hintText,
-    Widget? suffixIcon,
+    required Widget suffixIcon,
   }) {
     return InputDecoration(
       hintText: hintText,
@@ -39,31 +39,27 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return AuthShell(
-      headerIcon: Image.asset(
-        'assets/images/person.png',
-        width: 50,
-        height: 57,
+      headerIcon: Container(
+        width: 100,
+        height: 100,
+        decoration: const BoxDecoration(
+          color: AppColors.primary,
+          shape: BoxShape.circle,
+        ),
+        child: Center(
+          child: SizedBox(
+            width: 45,
+            height: 60,
+            child: Image.asset('assets/images/lock.png', fit: BoxFit.contain),
+          ),
+        ),
       ),
-      title: 'Welcome To\n Telehealth Service',
-      buttonText: 'Sign In',
-      onButtonPressed: () {},
+      title: "Set a new password", 
+      subtitle: "Create a new password. Ensure it differs from previous ones for security", 
+      buttonText: 'Update Password', onButtonPressed: () => Get.toNamed(Routes.SUCCESS),
       formContent: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'phone number',
-            style: TextStyle(
-              color: Color(0xFF4A5568),
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const SizedBox(height: 8),
-          TextFormField(
-            keyboardType: TextInputType.phone,
-            decoration: _fieldDecoration(hintText: '(+251_9 *** ****)'),
-          ),
-          const SizedBox(height: 18),
           const Text(
             'Password',
             style: TextStyle(
@@ -77,7 +73,7 @@ class LoginView extends GetView<LoginController> {
             () => TextFormField(
               obscureText: controller.isPasswordHidden.value,
               decoration: _fieldDecoration(
-                hintText: 'Password',
+                hintText: 'Enter your new password',
                 suffixIcon: IconButton(
                   onPressed: controller.togglePasswordVisibility,
                   icon: Icon(
@@ -91,22 +87,31 @@ class LoginView extends GetView<LoginController> {
               ),
             ),
           ),
-          const SizedBox(height: 12),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton(
-              onPressed: () => Get.toNamed(Routes.FORGOT_PASSWORD),
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.zero,
-                minimumSize: const Size(0, 0),
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              ),
-              child: const Text(
-                'Forgot Password',
-                style: TextStyle(
-                  color: AppColors.primary,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
+          const SizedBox(height: 16),
+
+          const Text(
+            'Confirm Password',
+            style: TextStyle(
+              color: Color(0xFF4A5568),
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Obx(
+            () => TextFormField(
+              obscureText: controller.isConfirmPasswordHidden.value,
+              decoration: _fieldDecoration(
+                hintText: 'Re-enter password',
+                suffixIcon: IconButton(
+                  onPressed: controller.toggleConfirmPasswordVisibility,
+                  icon: Icon(
+                    controller.isConfirmPasswordHidden.value
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
+                    color: Colors.grey.shade400,
+                    size: 18,
+                  ),
                 ),
               ),
             ),

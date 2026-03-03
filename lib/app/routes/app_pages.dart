@@ -1,9 +1,19 @@
 import 'package:get/get.dart';
 
+import '../modules/forgot_password/bindings/forgot_password_binding.dart';
+import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/new_password/bindings/new_password_binding.dart';
+import '../modules/new_password/views/new_password_view.dart';
+import '../modules/otp/bindings/otp_binding.dart';
+import '../modules/otp/views/otp_view.dart';
+import '../modules/password_reset/bindings/password_reset_binding.dart';
+import '../modules/password_reset/views/password_reset_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/success/bindings/success_binding.dart';
+import '../modules/success/views/success_view.dart';
 
 part 'app_routes.dart';
 
@@ -22,6 +32,31 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORGOT_PASSWORD,
+      page: () => const ForgotPasswordView(),
+      binding: ForgotPasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.OTP,
+      page: () => const OtpView(),
+      binding: OtpBinding(),
+    ),
+    GetPage(
+      name: _Paths.PASSWORD_RESET,
+      page: () => const PasswordResetView(),
+      binding: PasswordResetBinding(),
+    ),
+    GetPage(
+      name: _Paths.NEW_PASSWORD,
+      page: () => const NewPasswordView(),
+      binding: NewPasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.SUCCESS,
+      page: () => const SuccessView(),
+      binding: SuccessBinding(),
     ),
   ];
 }

@@ -23,7 +23,7 @@ class PasswordResetView extends GetView<PasswordResetController> {
       title: 'Password Reset',
       subtitle: 'Your password has been successfully reset. click confirm to set a new password',
       buttonText: 'Confirm',
-      onButtonPressed: () {},
+      onButtonPressed: () {}, formContent: null,
     );
   }
 }

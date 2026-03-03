@@ -6,7 +6,7 @@ class AuthShell extends StatelessWidget {
   final Widget headerIcon;
   final String title;
   final String? subtitle;
-  final Widget formContent;
+  final Widget? formContent;
   final String buttonText;
   final VoidCallback onButtonPressed;
   final double cardHeight;
@@ -16,7 +16,7 @@ class AuthShell extends StatelessWidget {
     required this.headerIcon,
     required this.title,
     this.subtitle,
-    required this.formContent,
+    this.formContent,
     required this.buttonText,
     required this.onButtonPressed,
     this.cardHeight = 681,
@@ -103,7 +103,7 @@ class AuthShell extends StatelessWidget {
                           ),
                         ) : const SizedBox.shrink(),
                         const SizedBox(height: 32),
-                        Expanded(child: formContent),
+                        Expanded(child: formContent ?? const SizedBox.shrink()),
                         const SizedBox(height: 20),
                         Center(
                           child: AppButton(

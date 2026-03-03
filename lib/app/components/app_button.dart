@@ -19,7 +19,7 @@ class AppButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onPressed,
-    this.backgroundColor = Colors.blue,
+    this.backgroundColor = AppColors.primary,
     this.textColor = Colors.white,
     required this.textSize,
     this.borderRadius = 8.0,

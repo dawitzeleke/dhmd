@@ -10,6 +10,7 @@ abstract class Routes {
   static const PASSWORD_RESET = _Paths.PASSWORD_RESET;
   static const NEW_PASSWORD = _Paths.NEW_PASSWORD;
   static const SUCCESS = _Paths.SUCCESS;
+  static const MAIN_NAV = _Paths.MAIN_NAV;
 }
 
 abstract class _Paths {
@@ -21,4 +22,5 @@ abstract class _Paths {
   static const PASSWORD_RESET = '/password-reset';
   static const NEW_PASSWORD = '/new-password';
   static const SUCCESS = '/success';
+  static const MAIN_NAV = '/main-nav';
 }

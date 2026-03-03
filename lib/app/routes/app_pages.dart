@@ -4,6 +4,8 @@ import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/new_password/bindings/new_password_binding.dart';
+import '../modules/new_password/views/new_password_view.dart';
 import '../modules/otp/bindings/otp_binding.dart';
 import '../modules/otp/views/otp_view.dart';
 import '../modules/password_reset/bindings/password_reset_binding.dart';
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.PASSWORD_RESET,
       page: () => const PasswordResetView(),
       binding: PasswordResetBinding(),
+    ),
+    GetPage(
+      name: _Paths.NEW_PASSWORD,
+      page: () => const NewPasswordView(),
+      binding: NewPasswordBinding(),
     ),
   ];
 }

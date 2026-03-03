@@ -8,6 +8,7 @@ abstract class Routes {
   static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
   static const OTP = _Paths.OTP;
   static const PASSWORD_RESET = _Paths.PASSWORD_RESET;
+  static const NEW_PASSWORD = _Paths.NEW_PASSWORD;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const FORGOT_PASSWORD = '/forgot-password';
   static const OTP = '/otp';
   static const PASSWORD_RESET = '/password-reset';
+  static const NEW_PASSWORD = '/new-password';
 }

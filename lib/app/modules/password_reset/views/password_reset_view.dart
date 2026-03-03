@@ -1,4 +1,5 @@
 import 'package:dhmd/app/components/auth/auth_shell.dart';
+import 'package:dhmd/app/routes/app_pages.dart';
 import 'package:dhmd/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,8 @@ class PasswordResetView extends GetView<PasswordResetController> {
       title: 'Password Reset',
       subtitle: 'Your password has been successfully reset. click confirm to set a new password',
       buttonText: 'Confirm',
-      onButtonPressed: () {}, formContent: null,
+      onButtonPressed: () => Get.toNamed(Routes.NEW_PASSWORD), 
+      formContent: null,
     );
   }
 }

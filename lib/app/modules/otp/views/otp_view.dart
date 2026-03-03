@@ -1,4 +1,5 @@
 import 'package:dhmd/app/components/auth/auth_shell.dart';
+import 'package:dhmd/app/routes/app_pages.dart';
 import 'package:dhmd/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -51,7 +52,7 @@ class OtpView extends GetView<OtpController> {
       title: 'Check your phone',
       subtitle: 'We sent a code to 09123456789 enter 6 digit code\nthat mentioned in the email',
       buttonText: 'Verify Code',
-      onButtonPressed: () {},
+      onButtonPressed: () => Get.toNamed(Routes.PASSWORD_RESET),
       formContent: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

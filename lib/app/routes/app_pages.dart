@@ -12,6 +12,8 @@ import '../modules/password_reset/bindings/password_reset_binding.dart';
 import '../modules/password_reset/views/password_reset_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/success/bindings/success_binding.dart';
+import '../modules/success/views/success_view.dart';
 
 part 'app_routes.dart';
 
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.NEW_PASSWORD,
       page: () => const NewPasswordView(),
       binding: NewPasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.SUCCESS,
+      page: () => const SuccessView(),
+      binding: SuccessBinding(),
     ),
   ];
 }

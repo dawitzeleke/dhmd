@@ -1,4 +1,5 @@
 import 'package:dhmd/app/components/auth/auth_shell.dart';
+import 'package:dhmd/app/routes/app_pages.dart';
 import 'package:dhmd/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -45,11 +46,17 @@ class NewPasswordView extends GetView<NewPasswordController> {
           color: AppColors.primary,
           shape: BoxShape.circle,
         ),
-        child: const Icon(Icons.lock_outline, color: Colors.white, size: 45),
+        child: Center(
+          child: SizedBox(
+            width: 45,
+            height: 60,
+            child: Image.asset('assets/images/lock.png', fit: BoxFit.contain),
+          ),
+        ),
       ),
       title: "Set a new password", 
       subtitle: "Create a new password. Ensure it differs from previous ones for security", 
-      buttonText: 'Update Password', onButtonPressed: () {},
+      buttonText: 'Update Password', onButtonPressed: () => Get.toNamed(Routes.SUCCESS),
       formContent: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -66,7 +73,7 @@ class NewPasswordView extends GetView<NewPasswordController> {
             () => TextFormField(
               obscureText: controller.isPasswordHidden.value,
               decoration: _fieldDecoration(
-                hintText: 'Enter new password',
+                hintText: 'Enter your new password',
                 suffixIcon: IconButton(
                   onPressed: controller.togglePasswordVisibility,
                   icon: Icon(
@@ -95,7 +102,7 @@ class NewPasswordView extends GetView<NewPasswordController> {
             () => TextFormField(
               obscureText: controller.isConfirmPasswordHidden.value,
               decoration: _fieldDecoration(
-                hintText: 'Confirm new password',
+                hintText: 'Re-enter password',
                 suffixIcon: IconButton(
                   onPressed: controller.toggleConfirmPasswordVisibility,
                   icon: Icon(

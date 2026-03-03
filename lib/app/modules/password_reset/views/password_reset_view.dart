@@ -11,7 +11,7 @@ class PasswordResetView extends GetView<PasswordResetController> {
   const PasswordResetView({super.key});
   @override
   Widget build(BuildContext context) {
-     return AuthShell(
+    return AuthShell(
       headerIcon: Container(
         width: 100,
         height: 100,
@@ -19,12 +19,19 @@ class PasswordResetView extends GetView<PasswordResetController> {
           color: AppColors.primary,
           shape: BoxShape.circle,
         ),
-        child: const Icon(Icons.lock_outline, color: Colors.white, size: 45),
+        child: Center(
+          child: SizedBox(
+            width: 45,
+            height: 60,
+            child: Image.asset('assets/images/lock.png', fit: BoxFit.contain),
+          ),
+        ),
       ),
       title: 'Password Reset',
-      subtitle: 'Your password has been successfully reset. click confirm to set a new password',
+      subtitle:
+          'Your password has been successfully reset. click confirm to set a new password',
       buttonText: 'Confirm',
-      onButtonPressed: () => Get.toNamed(Routes.NEW_PASSWORD), 
+      onButtonPressed: () => Get.toNamed(Routes.NEW_PASSWORD),
       formContent: null,
     );
   }

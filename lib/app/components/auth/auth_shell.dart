@@ -3,8 +3,8 @@ import 'package:dhmd/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AuthShell extends StatelessWidget {
-  final Widget headerIcon;
-  final String title;
+  final Widget? headerIcon;
+  final String? title;
   final String? subtitle;
   final Widget? formContent;
   final String buttonText;
@@ -13,8 +13,8 @@ class AuthShell extends StatelessWidget {
 
   const AuthShell({
     super.key,
-    required this.headerIcon,
-    required this.title,
+    this.headerIcon,
+    this.title,
     this.subtitle,
     this.formContent,
     required this.buttonText,
@@ -85,7 +85,7 @@ class AuthShell extends StatelessWidget {
                         Center(child: headerIcon),
                         const SizedBox(height: 20),
                         Text(
-                          title,
+                          title ?? '',
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 16,

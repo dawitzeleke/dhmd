@@ -47,7 +47,13 @@ class OtpView extends GetView<OtpController> {
           color: AppColors.primary,
           shape: BoxShape.circle,
         ),
-        child: const Icon(Icons.lock_outline, color: Colors.white, size: 45),
+        child: Center(
+          child: SizedBox(
+            width: 45,
+            height: 60,
+            child: Image.asset('assets/images/lock.png', fit: BoxFit.contain),
+          ),
+        ),
       ),
       title: 'Check your phone',
       subtitle: 'We sent a code to 09123456789 enter 6 digit code\nthat mentioned in the email',

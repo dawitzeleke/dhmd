@@ -41,7 +41,13 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
           color: AppColors.primary,
           shape: BoxShape.circle,
         ),
-        child: const Icon(Icons.lock_outline, color: Colors.white, size: 45),
+        child: Center(
+          child: SizedBox(
+            width: 45,
+            height: 60,
+            child: Image.asset('assets/images/lock.png', fit: BoxFit.contain),
+          ),
+        ),
       ),
       title: 'Forgot password',
       subtitle: 'Please enter your phone number to reset the password',

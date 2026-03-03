@@ -4,6 +4,8 @@ import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/main_nav/bindings/main_nav_binding.dart';
+import '../modules/main_nav/views/main_nav_view.dart';
 import '../modules/new_password/bindings/new_password_binding.dart';
 import '../modules/new_password/views/new_password_view.dart';
 import '../modules/otp/bindings/otp_binding.dart';
@@ -57,6 +59,11 @@ class AppPages {
       name: _Paths.SUCCESS,
       page: () => const SuccessView(),
       binding: SuccessBinding(),
+    ),
+    GetPage(
+      name: _Paths.MAIN_NAV,
+      page: () => const MainNavView(),
+      binding: MainNavBinding(),
     ),
   ];
 }

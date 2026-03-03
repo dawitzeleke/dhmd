@@ -46,7 +46,7 @@ class LoginView extends GetView<LoginController> {
       ),
       title: 'Welcome To\n Telehealth Service',
       buttonText: 'Sign In',
-      onButtonPressed: () {},
+      onButtonPressed: () => Get.offAllNamed(Routes.MAIN_NAV),
       formContent: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -6,6 +6,8 @@ abstract class Routes {
   static const SPLASH = _Paths.SPLASH;
   static const LOGIN = _Paths.LOGIN;
   static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
+  static const OTP = _Paths.OTP;
+  static const PASSWORD_RESET = _Paths.PASSWORD_RESET;
 }
 
 abstract class _Paths {
@@ -13,4 +15,6 @@ abstract class _Paths {
   static const SPLASH = '/splash';
   static const LOGIN = '/login';
   static const FORGOT_PASSWORD = '/forgot-password';
+  static const OTP = '/otp';
+  static const PASSWORD_RESET = '/password-reset';
 }

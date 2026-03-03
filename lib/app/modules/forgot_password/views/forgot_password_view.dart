@@ -1,4 +1,5 @@
 import 'package:dhmd/app/components/auth/auth_shell.dart';
+import 'package:dhmd/app/routes/app_pages.dart';
 import 'package:dhmd/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,7 +46,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
       title: 'Forgot password',
       subtitle: 'Please enter your phone number to reset the password',
       buttonText: 'Reset Password',
-      onButtonPressed: () {},
+      onButtonPressed: () => Get.toNamed(Routes.OTP),
       formContent: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

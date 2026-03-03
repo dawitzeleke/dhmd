@@ -39,7 +39,7 @@ class SplashView extends GetView<SplashController> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: AppButton(
                   text: "Get Started",
-                  onPressed: () => {},
+                  onPressed: () => Get.offAllNamed('/login'),
                   width: 260,
                   borderRadius: 60,
                   backgroundColor: AppColors.primary,

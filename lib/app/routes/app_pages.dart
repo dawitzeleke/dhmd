@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/booking/bindings/booking_binding.dart';
+import '../modules/booking/views/booking_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -71,6 +73,11 @@ class AppPages {
       name: _Paths.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOKING,
+      page: () => const BookingView(),
+      binding: BookingBinding(),
     ),
   ];
 }

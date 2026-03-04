@@ -33,7 +33,7 @@ class HomeTopHeader extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: AppColors.primary,
-                      fontSize: 18,
+                      fontSize: 15,
                       fontWeight: FontWeight.w600,
                       height: 1.1,
                     ),
@@ -45,7 +45,7 @@ class HomeTopHeader extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: AppColors.primary,
-                      fontSize: 13,
+                      fontSize: 11,
                       fontWeight: FontWeight.w400,
                       height: 1.1,
                     ),

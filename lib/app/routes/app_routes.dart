@@ -11,6 +11,7 @@ abstract class Routes {
   static const NEW_PASSWORD = _Paths.NEW_PASSWORD;
   static const SUCCESS = _Paths.SUCCESS;
   static const MAIN_NAV = _Paths.MAIN_NAV;
+  static const HOME = _Paths.HOME;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const NEW_PASSWORD = '/new-password';
   static const SUCCESS = '/success';
   static const MAIN_NAV = '/main-nav';
+  static const HOME = '/home';
 }

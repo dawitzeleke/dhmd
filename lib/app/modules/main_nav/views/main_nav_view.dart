@@ -1,3 +1,4 @@
+import 'package:dhmd/app/modules/home/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -11,7 +12,7 @@ class MainNavView extends GetView<MainNavController> {
   const MainNavView({super.key});
 
   List<Widget> get _tabs => const [
-    _TabPlaceholder(title: 'Home'),
+    HomeView(),
     _TabPlaceholder(title: 'Appointment'),
     _TabPlaceholder(title: 'History'),
     _TabPlaceholder(title: 'Profile'),

@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/profile/views/account_information.dart';
+import '../modules/profile/views/edit_account.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -71,6 +73,14 @@ class AppPages {
       name: _Paths.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.ACCOUNT_INFORMATION,
+      page: () => const AccountInformationView(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_ACCOUNT,
+      page: () => const EditAccountView(),
     ),
   ];
 }

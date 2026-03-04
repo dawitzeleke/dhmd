@@ -12,6 +12,8 @@ abstract class Routes {
   static const SUCCESS = _Paths.SUCCESS;
   static const MAIN_NAV = _Paths.MAIN_NAV;
   static const HOME = _Paths.HOME;
+  static const ACCOUNT_INFORMATION = _Paths.ACCOUNT_INFORMATION;
+  static const EDIT_ACCOUNT = _Paths.EDIT_ACCOUNT;
 }
 
 abstract class _Paths {
@@ -25,4 +27,6 @@ abstract class _Paths {
   static const SUCCESS = '/success';
   static const MAIN_NAV = '/main-nav';
   static const HOME = '/home';
+  static const ACCOUNT_INFORMATION = '/account-information';
+  static const EDIT_ACCOUNT = '/edit-account';
 }

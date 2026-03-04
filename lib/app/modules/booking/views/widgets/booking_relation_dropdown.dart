@@ -27,7 +27,7 @@ class BookingRelationDropdown extends StatelessWidget {
           value: value,
           isExpanded: true,
           icon: const Icon(Icons.keyboard_arrow_down, color: Color(0xFF2F3A55)),
-          style: const TextStyle(fontSize: 17, color: Color(0xFF2F2F2F)),
+          style: const TextStyle(fontSize: 14, color: Color(0xFF2F2F2F)),
           items: options
               .map(
                 (option) => DropdownMenuItem<String>(

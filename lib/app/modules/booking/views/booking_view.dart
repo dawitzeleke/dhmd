@@ -70,6 +70,7 @@ class BookingView extends GetView<BookingController> {
                 BookingInputField(
                   controller: controller.dateOfBirthController,
                   hintText: '15-05-1964',
+                  
                   readOnly: true,
                   suffix: const Icon(
                     Icons.calendar_month_outlined,

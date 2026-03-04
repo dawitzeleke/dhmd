@@ -25,14 +25,14 @@ class BookingInputField extends StatelessWidget {
         readOnly: readOnly,
         keyboardType: keyboardType,
         style: const TextStyle(
-          fontSize: 17,
+          fontSize: 14,
           color: Color(0xFF2F2F2F),
         ),
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: const TextStyle(
-            fontSize: 17,
-            color: Color(0xFFB6BAC3),
+            fontSize: 14,
+            // color: Color(0xFFB6BAC3),
           ),
           suffixIcon: suffix,
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),

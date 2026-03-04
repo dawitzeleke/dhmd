@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:dhmd/app/routes/app_pages.dart';
 
 class BookingController extends GetxController {
   final requestTypeOptions = const ['Son', 'Follow-up', 'Emergency'];
@@ -11,6 +12,7 @@ class BookingController extends GetxController {
   final dateOfBirthController = TextEditingController(text: '15-05-1964');
   final heightController = TextEditingController();
   final weightController = TextEditingController();
+  final problemDescriptionController = TextEditingController();
 
   final relationOptions = const ['Self', 'Parent', 'Child', 'Spouse'];
   final selectedRelation = 'Self'.obs;
@@ -25,7 +27,15 @@ class BookingController extends GetxController {
     selectedRelation.value = value;
   }
 
-  void onNextPressed() {}
+  void onNextPressed() {
+    Get.toNamed(Routes.BOOKING_PROBLEM);
+  }
+
+  void onBrowsePressed() {}
+
+  void onUploadPressed() {}
+
+  void onProblemNextPressed() {}
 
   @override
   void onClose() {
@@ -35,6 +45,7 @@ class BookingController extends GetxController {
     dateOfBirthController.dispose();
     heightController.dispose();
     weightController.dispose();
+    problemDescriptionController.dispose();
     super.onClose();
   }
 }

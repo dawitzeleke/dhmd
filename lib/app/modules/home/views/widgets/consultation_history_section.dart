@@ -59,11 +59,11 @@ class _ConsultationCard extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(8),
         boxShadow: const [
           BoxShadow(
             color: Color(0x14000000),
-            blurRadius: 14,
+            blurRadius: 8,
             offset: Offset(0, 5),
           ),
         ],
@@ -77,8 +77,8 @@ class _ConsultationCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
                   item.imagePath,
-                  width: 96,
-                  height: 96,
+                  width: 91,
+                  height: 91,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -106,7 +106,7 @@ class _ConsultationCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       color: Color(0xFF31343B),
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -117,7 +117,7 @@ class _ConsultationCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       color: Color(0xFF7781A1),
-                      fontSize: 14,
+                      fontSize: 12,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -129,7 +129,7 @@ class _ConsultationCard extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 3),
                         child: Icon(
                           Icons.star,
-                          size: 18,
+                          size: 13,
                           color: isFilled
                               ? const Color(0xFFF3C849)
                               : const Color(0xFFE2E6EE),
@@ -144,7 +144,7 @@ class _ConsultationCard extends StatelessWidget {
           if (item.isFavorite)
             const Padding(
               padding: EdgeInsets.only(top: 8, left: 8),
-              child: Icon(Icons.favorite, color: Color(0xFFFF1A1A), size: 30),
+              child: Icon(Icons.favorite, color: Color(0xFFFF1A1A), size: 21),
             ),
         ],
       ),

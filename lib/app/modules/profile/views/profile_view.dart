@@ -1,9 +1,12 @@
 import 'package:dhmd/core/constants/app_colors.dart';
+import 'package:dhmd/app/components/app_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import '../controllers/profile_controller.dart';
+import 'widgets/profile_edit_value_row.dart';
+import 'widgets/profile_gender_selector.dart';
 import 'widgets/profile_info_item.dart';
 import 'widgets/profile_menu_tile.dart';
 import 'widgets/profile_settings_action_tile.dart';
@@ -21,7 +24,141 @@ class ProfileView extends GetView<ProfileController> {
         body: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(22, 16, 22, 20),
-            child: controller.isAccountInfoOpen.value
+            child: controller.isEditAccountOpen.value
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 6),
+                      InkWell(
+                        onTap: controller.closeEditAccount,
+                        child: const Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_back,
+                              color: AppColors.primary,
+                              size: 18,
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              'Edit Account',
+                              style: TextStyle(
+                                color: AppColors.primary,
+                                fontSize: 31,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.fromLTRB(14, 16, 14, 16),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Personal',
+                              style: TextStyle(
+                                fontSize: 34,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.primary,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            const ProfileEditValueRow(
+                              label: 'Card Id',
+                              value: '1092302',
+                            ),
+                            const SizedBox(height: 12),
+                            const ProfileEditValueRow(
+                              label: 'Title',
+                              value: 'zhafira',
+                            ),
+                            const SizedBox(height: 12),
+                            const ProfileEditValueRow(
+                              label: 'First Name',
+                              value: 'Girma',
+                            ),
+                            const SizedBox(height: 12),
+                            const ProfileEditValueRow(
+                              label: 'Last Name',
+                              value: 'Tefera',
+                            ),
+                            const SizedBox(height: 12),
+                            const ProfileEditValueRow(
+                              label: 'Date of Birth',
+                              value: 'Feb 12, 1994',
+                              trailing: Icon(
+                                Icons.calendar_month_outlined,
+                                color: Color(0xFF7B8EA9),
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            const Text(
+                              'Gender',
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Color(0xFF8A9AB0),
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Obx(
+                              () => ProfileGenderSelector(
+                                isMale: controller.isMale.value,
+                                onChanged: controller.selectGender,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            const Divider(height: 1, color: Color(0xFFDCE3ED)),
+                            const SizedBox(height: 16),
+                            const Text(
+                              'Contact',
+                              style: TextStyle(
+                                fontSize: 34,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.primary,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            const ProfileEditValueRow(
+                              label: 'Type your phone number',
+                              value: '+251-912345678',
+                              trailing: Icon(
+                                Icons.phone_outlined,
+                                color: Color(0xFF1F2430),
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            const ProfileEditValueRow(
+                              label: 'Type your email',
+                              value: 'girma@gmail.com',
+                              trailing: Icon(
+                                Icons.mail_outline,
+                                color: Color(0xFF7B8EA9),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 34),
+                      Center(
+                        child: AppButton(
+                          text: 'Save Changes',
+                          onPressed: controller.saveEditAccount,
+                          textSize: 14,
+                          width: 170,
+                          height: 42,
+                          borderRadius: 10,
+                        ),
+                      ),
+                    ],
+                  )
+                : controller.isAccountInfoOpen.value
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -48,9 +185,9 @@ class ProfileView extends GetView<ProfileController> {
                         ),
                       ),
                       const SizedBox(height: 34),
-                      const Row(
+                      Row(
                         children: [
-                          Text(
+                          const Text(
                             'Personal',
                             style: TextStyle(
                               fontSize: 34,
@@ -59,10 +196,13 @@ class ProfileView extends GetView<ProfileController> {
                             ),
                           ),
                           Spacer(),
-                          Icon(
-                            Icons.edit_outlined,
-                            color: AppColors.primary,
-                            size: 32,
+                          InkWell(
+                            onTap: controller.openEditAccount,
+                            child: const Icon(
+                              Icons.edit_outlined,
+                              color: AppColors.primary,
+                              size: 32,
+                            ),
                           ),
                         ],
                       ),

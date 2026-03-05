@@ -6,6 +6,8 @@ class ProfileController extends GetxController {
 
   final isSettingsOpen = false.obs;
   final isAccountInfoOpen = false.obs;
+  final isEditAccountOpen = false.obs;
+  final isMale = true.obs;
   final textMessagesEnabled = true.obs;
   final phoneCallsEnabled = true.obs;
   final videoCallEnabled = true.obs;
@@ -16,6 +18,22 @@ class ProfileController extends GetxController {
   }
 
   void closeAccountInfo() => isAccountInfoOpen.value = false;
+
+  void openEditAccount() {
+    isEditAccountOpen.value = true;
+  }
+
+  void closeEditAccount() {
+    isEditAccountOpen.value = false;
+  }
+
+  void saveEditAccount() {
+    isEditAccountOpen.value = false;
+  }
+
+  void selectGender(bool male) {
+    isMale.value = male;
+  }
 
   void openSettings() {
     isSettingsOpen.value = true;

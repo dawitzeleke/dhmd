@@ -21,6 +21,8 @@ import '../modules/otp/bindings/otp_binding.dart';
 import '../modules/otp/views/otp_view.dart';
 import '../modules/password_reset/bindings/password_reset_binding.dart';
 import '../modules/password_reset/views/password_reset_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/success/bindings/success_binding.dart';
@@ -108,6 +110,11 @@ class AppPages {
       name: _Paths.BOOKING_SCHEDULE,
       page: () => const BookingScheduleView(),
       binding: BookingBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
     ),
   ];
 }

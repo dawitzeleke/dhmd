@@ -1,4 +1,5 @@
 import 'package:dhmd/app/modules/home/views/home_view.dart';
+import 'package:dhmd/app/modules/profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -15,7 +16,7 @@ class MainNavView extends GetView<MainNavController> {
     HomeView(),
     _TabPlaceholder(title: 'Appointment'),
     _TabPlaceholder(title: 'History'),
-    _TabPlaceholder(title: 'Profile'),
+    ProfileView(),
   ];
 
   Widget _navItem({
@@ -27,18 +28,14 @@ class MainNavView extends GetView<MainNavController> {
       return SizedBox(
         width: 28,
         height: 28,
-        child: Image.asset(
-          icon,
-          color: Colors.white,
-          fit: BoxFit.contain,
-        ),
+        child: Image.asset(icon, color: Colors.white, fit: BoxFit.contain),
       );
     }
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-         const SizedBox(height: 20),
+        const SizedBox(height: 20),
         Image.asset(icon, color: Colors.white, width: 24, height: 24),
         const SizedBox(height: 8),
         Text(
@@ -55,15 +52,14 @@ class MainNavView extends GetView<MainNavController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () {
-        final safeIndex = controller.selectedIndex.value.clamp(0, _tabs.length - 1);
+    return Obx(() {
+      final safeIndex = controller.selectedIndex.value.clamp(
+        0,
+        _tabs.length - 1,
+      );
 
-        return Scaffold(
-        body: IndexedStack(
-          index: safeIndex,
-          children: _tabs,
-        ),
+      return Scaffold(
+        body: IndexedStack(index: safeIndex, children: _tabs),
         bottomNavigationBar: CurvedNavigationBar(
           height: 75,
           index: safeIndex,
@@ -96,8 +92,7 @@ class MainNavView extends GetView<MainNavController> {
           ],
         ),
       );
-      },
-    );
+    });
   }
 }
 

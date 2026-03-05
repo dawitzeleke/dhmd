@@ -20,23 +20,31 @@ class ConsultationItem {
 
 class ConsultationHistorySection extends StatelessWidget {
   final List<ConsultationItem> items;
+  final bool showTitle;
+  final String title;
 
-  const ConsultationHistorySection({super.key, required this.items});
+  const ConsultationHistorySection({
+    super.key,
+    required this.items,
+    this.showTitle = true,
+    this.title = 'Consultation History',
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Consultation History',
-          style: TextStyle(
-            color: Color(0xFF363A43),
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
+        if (showTitle)
+          Text(
+            title,
+            style: const TextStyle(
+              color: Color(0xFF363A43),
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+            ),
           ),
-        ),
-        const SizedBox(height: 14),
+        if (showTitle) const SizedBox(height: 14),
         ...items.map(
           (item) => Padding(
             padding: const EdgeInsets.only(bottom: 14),

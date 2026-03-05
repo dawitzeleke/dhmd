@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/profile_controller.dart';
+import 'widgets/profile_info_item.dart';
 import 'widgets/profile_menu_tile.dart';
 import 'widgets/profile_settings_action_tile.dart';
 import 'widgets/profile_settings_toggle_tile.dart';
@@ -20,7 +21,184 @@ class ProfileView extends GetView<ProfileController> {
         body: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(22, 16, 22, 20),
-            child: controller.isSettingsOpen.value
+            child: controller.isAccountInfoOpen.value
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 6),
+                      InkWell(
+                        onTap: controller.closeAccountInfo,
+                        child: const Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_back,
+                              color: AppColors.primary,
+                              size: 18,
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              'Account Infomation',
+                              style: TextStyle(
+                                color: AppColors.primary,
+                                fontSize: 31,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 34),
+                      const Row(
+                        children: [
+                          Text(
+                            'Personal',
+                            style: TextStyle(
+                              fontSize: 34,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.primary,
+                            ),
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.edit_outlined,
+                            color: AppColors.primary,
+                            size: 32,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 14),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.fromLTRB(14, 18, 14, 16),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: const Column(
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: ProfileInfoItem(
+                                    label: 'Card Id',
+                                    value: '1092302',
+                                  ),
+                                ),
+                                Expanded(
+                                  child: ProfileInfoItem(
+                                    label: 'Title',
+                                    value: 'Col...',
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 18),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: ProfileInfoItem(
+                                    label: 'First Name',
+                                    value: 'Girma',
+                                  ),
+                                ),
+                                Expanded(
+                                  child: ProfileInfoItem(
+                                    label: 'Last Name',
+                                    value: 'Tefera',
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 18),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: ProfileInfoItem(
+                                    label: 'Date of Birth',
+                                    value: 'Feb 12, 1980',
+                                  ),
+                                ),
+                                Expanded(
+                                  child: ProfileInfoItem(
+                                    label: 'Gender',
+                                    value: 'Male',
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 26),
+                      const Text(
+                        'Contact',
+                        style: TextStyle(
+                          fontSize: 34,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.primary,
+                        ),
+                      ),
+                      const SizedBox(height: 14),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.fromLTRB(14, 18, 14, 16),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: const Column(
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: ProfileInfoItem(
+                                    label: 'Phone Number',
+                                    value: '081892319321',
+                                  ),
+                                ),
+                                Expanded(
+                                  child: ProfileInfoItem(
+                                    label: 'Email',
+                                    value: 'zhafir@gmail.com',
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 18),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: ProfileInfoItem(
+                                    label: 'City',
+                                    value: 'Bandung',
+                                  ),
+                                ),
+                                Expanded(
+                                  child: ProfileInfoItem(
+                                    label: 'Province',
+                                    value: 'West Java',
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 18),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: ProfileInfoItem(
+                                    label: 'Address',
+                                    value: 'Jl. Sekar Wangi 20 A, Bancangan',
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 40),
+                    ],
+                  )
+                : controller.isSettingsOpen.value
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -186,11 +364,12 @@ class ProfileView extends GetView<ProfileController> {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      const ProfileMenuTile(
+                      ProfileMenuTile(
                         icon: Icons.person_outline,
                         title: 'Account Information',
                         subtitle: 'Change your account information',
                         showDivider: true,
+                        onTap: controller.openAccountInfo,
                       ),
                       const SizedBox(height: 6),
                       ProfileMenuTile(

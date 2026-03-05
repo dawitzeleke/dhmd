@@ -5,11 +5,22 @@ class ProfileController extends GetxController {
   final userEmail = 'girma@gmail.com';
 
   final isSettingsOpen = false.obs;
+  final isAccountInfoOpen = false.obs;
   final textMessagesEnabled = true.obs;
   final phoneCallsEnabled = true.obs;
   final videoCallEnabled = true.obs;
 
-  void openSettings() => isSettingsOpen.value = true;
+  void openAccountInfo() {
+    isAccountInfoOpen.value = true;
+    isSettingsOpen.value = false;
+  }
+
+  void closeAccountInfo() => isAccountInfoOpen.value = false;
+
+  void openSettings() {
+    isSettingsOpen.value = true;
+    isAccountInfoOpen.value = false;
+  }
 
   void closeSettings() => isSettingsOpen.value = false;
 

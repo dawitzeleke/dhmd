@@ -41,7 +41,7 @@ class BookingProblemView extends GetView<BookingController> {
                 Center(
                   child: AppButton(
                     text: 'Next',
-                    onPressed: controller.onNextPressed,
+                    onPressed: controller.onProblemNextPressed,
                     textSize: 13,
                     width: 123,
                     height: 35,

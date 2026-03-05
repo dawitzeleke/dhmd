@@ -14,6 +14,8 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const BOOKING = _Paths.BOOKING;
   static const BOOKING_PROBLEM = _Paths.BOOKING_PROBLEM;
+  static const BOOKING_TREATMENT = _Paths.BOOKING_TREATMENT;
+  static const BOOKING_ALLERGY = _Paths.BOOKING_ALLERGY;
 }
 
 abstract class _Paths {
@@ -29,4 +31,6 @@ abstract class _Paths {
   static const HOME = '/home';
   static const BOOKING = '/booking';
   static const BOOKING_PROBLEM = '/booking-problem';
+  static const BOOKING_TREATMENT = '/booking-treatment';
+  static const BOOKING_ALLERGY = '/booking-allergy';
 }

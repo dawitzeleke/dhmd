@@ -13,9 +13,13 @@ class BookingController extends GetxController {
   final heightController = TextEditingController();
   final weightController = TextEditingController();
   final problemDescriptionController = TextEditingController();
+  final treatmentDescriptionController = TextEditingController();
+  final allergyDescriptionController = TextEditingController();
 
   final relationOptions = const ['Self', 'Parent', 'Child', 'Spouse'];
   final selectedRelation = 'Self'.obs;
+  final hasOngoingTreatment = true.obs;
+  final hasDrugAllergy = true.obs;
 
   void setRequestType(String? value) {
     if (value == null) return;
@@ -35,7 +39,23 @@ class BookingController extends GetxController {
 
   void onUploadPressed() {}
 
-  void onProblemNextPressed() {}
+  void setOngoingTreatment(bool value) {
+    hasOngoingTreatment.value = value;
+  }
+
+  void setDrugAllergy(bool value) {
+    hasDrugAllergy.value = value;
+  }
+
+  void onProblemNextPressed() {
+    Get.toNamed(Routes.BOOKING_TREATMENT);
+  }
+
+  void onTreatmentNextPressed() {
+    Get.toNamed(Routes.BOOKING_ALLERGY);
+  }
+
+  void onAllergyNextPressed() {}
 
   @override
   void onClose() {
@@ -46,6 +66,8 @@ class BookingController extends GetxController {
     heightController.dispose();
     weightController.dispose();
     problemDescriptionController.dispose();
+    treatmentDescriptionController.dispose();
+    allergyDescriptionController.dispose();
     super.onClose();
   }
 }

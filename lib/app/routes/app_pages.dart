@@ -1,5 +1,12 @@
 import 'package:get/get.dart';
 
+import '../modules/booking/bindings/booking_binding.dart';
+import '../modules/booking/views/booking_allergy_view.dart';
+import '../modules/booking/views/booking_appointment_type_view.dart';
+import '../modules/booking/views/booking_problem_view.dart';
+import '../modules/booking/views/booking_schedule_view.dart';
+import '../modules/booking/views/booking_treatment_view.dart';
+import '../modules/booking/views/booking_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -71,6 +78,36 @@ class AppPages {
       name: _Paths.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOKING,
+      page: () => const BookingView(),
+      binding: BookingBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOKING_PROBLEM,
+      page: () => const BookingProblemView(),
+      binding: BookingBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOKING_TREATMENT,
+      page: () => const BookingTreatmentView(),
+      binding: BookingBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOKING_ALLERGY,
+      page: () => const BookingAllergyView(),
+      binding: BookingBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOKING_APPOINTMENT_TYPE,
+      page: () => const BookingAppointmentTypeView(),
+      binding: BookingBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOKING_SCHEDULE,
+      page: () => const BookingScheduleView(),
+      binding: BookingBinding(),
     ),
   ];
 }

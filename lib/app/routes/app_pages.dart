@@ -4,6 +4,7 @@ import '../modules/booking/bindings/booking_binding.dart';
 import '../modules/booking/views/booking_allergy_view.dart';
 import '../modules/booking/views/booking_appointment_type_view.dart';
 import '../modules/booking/views/booking_problem_view.dart';
+import '../modules/booking/views/booking_schedule_view.dart';
 import '../modules/booking/views/booking_treatment_view.dart';
 import '../modules/booking/views/booking_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
@@ -101,6 +102,11 @@ class AppPages {
     GetPage(
       name: _Paths.BOOKING_APPOINTMENT_TYPE,
       page: () => const BookingAppointmentTypeView(),
+      binding: BookingBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOKING_SCHEDULE,
+      page: () => const BookingScheduleView(),
       binding: BookingBinding(),
     ),
   ];

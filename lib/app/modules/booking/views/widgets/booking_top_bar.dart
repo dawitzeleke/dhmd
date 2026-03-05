@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BookingTopBar extends StatelessWidget {
-  const BookingTopBar({super.key});
+  final String title;
+
+  const BookingTopBar({super.key, this.title = 'Booking Appointment'});
 
   @override
   Widget build(BuildContext context) {
@@ -11,15 +13,19 @@ class BookingTopBar extends StatelessWidget {
       children: [
         IconButton(
           onPressed: Get.back,
-          icon: const Icon(Icons.arrow_back, color: AppColors.primary, size: 16),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: AppColors.primary,
+            size: 16,
+          ),
         ),
         const SizedBox(width: 4),
-        const Expanded(
+        Expanded(
           child: Text(
-            'Booking Appointment',
+            title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.primary,
               fontSize: 16,
               fontWeight: FontWeight.w500,

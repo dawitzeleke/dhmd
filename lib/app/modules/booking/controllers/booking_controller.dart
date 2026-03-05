@@ -23,6 +23,9 @@ class BookingController extends GetxController {
   final prefersDirectChat = true.obs;
   final prefersVideoCall = true.obs;
   final prefersPhone = false.obs;
+  final selectedTimeSlotIndex = 2.obs;
+  final selectedReminderIndex = 2.obs;
+  final showCompletedDialog = false.obs;
 
   void setRequestType(String? value) {
     if (value == null) return;
@@ -74,7 +77,25 @@ class BookingController extends GetxController {
     Get.toNamed(Routes.BOOKING_APPOINTMENT_TYPE);
   }
 
-  void onAppointmentTypeNextPressed() {}
+  void onAppointmentTypeNextPressed() {
+    Get.toNamed(Routes.BOOKING_SCHEDULE);
+  }
+
+  void selectTimeSlot(int index) {
+    selectedTimeSlotIndex.value = index;
+  }
+
+  void selectReminder(int index) {
+    selectedReminderIndex.value = index;
+  }
+
+  void onScheduleDonePressed() {
+    showCompletedDialog.value = true;
+  }
+
+  void closeCompletedDialog() {
+    showCompletedDialog.value = false;
+  }
 
   @override
   void onClose() {

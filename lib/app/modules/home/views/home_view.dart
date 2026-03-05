@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 import 'widgets/consultation_history_section.dart';
 import 'widgets/home_good_hands_banner.dart';
@@ -56,7 +57,7 @@ class HomeView extends GetView<HomeController> {
                   const HomeSearchSection(),
                   const SizedBox(height: 16),
                   HomeGoodHandsBanner(
-                    onBookNow: () {},
+                    onBookNow: () => Get.toNamed(Routes.BOOKING),
                     imagePath: 'assets/images/book_banner.png',
                   ),
                   const SizedBox(height: 28),

@@ -12,6 +12,12 @@ abstract class Routes {
   static const SUCCESS = _Paths.SUCCESS;
   static const MAIN_NAV = _Paths.MAIN_NAV;
   static const HOME = _Paths.HOME;
+  static const BOOKING = _Paths.BOOKING;
+  static const BOOKING_PROBLEM = _Paths.BOOKING_PROBLEM;
+  static const BOOKING_TREATMENT = _Paths.BOOKING_TREATMENT;
+  static const BOOKING_ALLERGY = _Paths.BOOKING_ALLERGY;
+  static const BOOKING_APPOINTMENT_TYPE = _Paths.BOOKING_APPOINTMENT_TYPE;
+  static const BOOKING_SCHEDULE = _Paths.BOOKING_SCHEDULE;
 }
 
 abstract class _Paths {
@@ -25,4 +31,10 @@ abstract class _Paths {
   static const SUCCESS = '/success';
   static const MAIN_NAV = '/main-nav';
   static const HOME = '/home';
+  static const BOOKING = '/booking';
+  static const BOOKING_PROBLEM = '/booking-problem';
+  static const BOOKING_TREATMENT = '/booking-treatment';
+  static const BOOKING_ALLERGY = '/booking-allergy';
+  static const BOOKING_APPOINTMENT_TYPE = '/booking-appointment-type';
+  static const BOOKING_SCHEDULE = '/booking-schedule';
 }

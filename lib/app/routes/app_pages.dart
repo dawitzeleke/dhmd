@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 import '../modules/booking/bindings/booking_binding.dart';
 import '../modules/booking/views/booking_allergy_view.dart';
+import '../modules/booking/views/booking_appointment_type_view.dart';
 import '../modules/booking/views/booking_problem_view.dart';
 import '../modules/booking/views/booking_treatment_view.dart';
 import '../modules/booking/views/booking_view.dart';
@@ -95,6 +96,11 @@ class AppPages {
     GetPage(
       name: _Paths.BOOKING_ALLERGY,
       page: () => const BookingAllergyView(),
+      binding: BookingBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOKING_APPOINTMENT_TYPE,
+      page: () => const BookingAppointmentTypeView(),
       binding: BookingBinding(),
     ),
   ];

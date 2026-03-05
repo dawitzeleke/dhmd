@@ -20,6 +20,9 @@ class BookingController extends GetxController {
   final selectedRelation = 'Self'.obs;
   final hasOngoingTreatment = true.obs;
   final hasDrugAllergy = true.obs;
+  final prefersDirectChat = true.obs;
+  final prefersVideoCall = true.obs;
+  final prefersPhone = false.obs;
 
   void setRequestType(String? value) {
     if (value == null) return;
@@ -55,7 +58,23 @@ class BookingController extends GetxController {
     Get.toNamed(Routes.BOOKING_ALLERGY);
   }
 
-  void onAllergyNextPressed() {}
+  void setPrefersDirectChat(bool value) {
+    prefersDirectChat.value = value;
+  }
+
+  void setPrefersVideoCall(bool value) {
+    prefersVideoCall.value = value;
+  }
+
+  void setPrefersPhone(bool value) {
+    prefersPhone.value = value;
+  }
+
+  void onAllergyNextPressed() {
+    Get.toNamed(Routes.BOOKING_APPOINTMENT_TYPE);
+  }
+
+  void onAppointmentTypeNextPressed() {}
 
   @override
   void onClose() {

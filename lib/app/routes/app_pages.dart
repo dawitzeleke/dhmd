@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/appointment/bindings/appointment_binding.dart';
+import '../modules/appointment/views/appointment_view.dart';
 import '../modules/booking/bindings/booking_binding.dart';
 import '../modules/booking/views/booking_allergy_view.dart';
 import '../modules/booking/views/booking_appointment_type_view.dart';
@@ -122,6 +124,11 @@ class AppPages {
       name: _Paths.HISTORY,
       page: () => const HistoryView(),
       binding: HistoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.APPOINTMENT,
+      page: () => const AppointmentView(),
+      binding: AppointmentBinding(),
     ),
   ];
 }

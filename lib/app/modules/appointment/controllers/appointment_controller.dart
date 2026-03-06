@@ -44,18 +44,42 @@ class AppointmentController extends GetxController {
   ];
 
   final selectedAppointment = Rxn<AppointmentEntry>();
+  final viewStage = 0.obs; // 0=list, 1=detail, 2=actions
 
-  bool get isDetailOpen => selectedAppointment.value != null;
+  bool get isDetailOpen => viewStage.value == 1;
+  bool get isActionsOpen => viewStage.value == 2;
 
   void openAppointmentDetail(AppointmentEntry item) {
     selectedAppointment.value = item;
+    viewStage.value = 1;
   }
 
   void closeAppointmentDetail() {
+    viewStage.value = 0;
     selectedAppointment.value = null;
   }
 
   void onDetailNextPressed() {
-    Get.toNamed(Routes.BOOKING);
+    viewStage.value = 2;
+  }
+
+  void onReschedulePressed() {
+    Get.toNamed(Routes.BOOKING_SCHEDULE);
+  }
+
+  void onCancelPressed() {
+    closeAppointmentDetail();
+  }
+
+  bool onBackPressed() {
+    if (isActionsOpen) {
+      viewStage.value = 1;
+      return false;
+    }
+    if (isDetailOpen) {
+      closeAppointmentDetail();
+      return false;
+    }
+    return true;
   }
 }

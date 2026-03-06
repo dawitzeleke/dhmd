@@ -1,0 +1,61 @@
+import 'package:get/get.dart';
+import 'package:dhmd/app/routes/app_pages.dart';
+
+class AppointmentEntry {
+  final String title;
+  final String doctorName;
+  final String specialty;
+  final String subSpecialty;
+  final String experience;
+  final String certification;
+  final String date;
+  final String day;
+  final String time;
+  final String imagePath;
+
+  const AppointmentEntry({
+    required this.title,
+    required this.doctorName,
+    required this.specialty,
+    required this.subSpecialty,
+    required this.experience,
+    required this.certification,
+    required this.date,
+    required this.day,
+    required this.time,
+    required this.imagePath,
+  });
+}
+
+class AppointmentController extends GetxController {
+  final appointments = const <AppointmentEntry>[
+    AppointmentEntry(
+      title: 'Check your dental health',
+      doctorName: 'Dr. Tesfaye Alemayehu',
+      specialty: 'Cardiology',
+      subSpecialty: 'Interventional Cardiology',
+      experience: '10+ Years',
+      certification: 'MD, Specialty Certification',
+      date: 'Feb 16, 2026',
+      day: 'Monday',
+      time: '12:00 PM',
+      imagePath: 'assets/images/doctor.png',
+    ),
+  ];
+
+  final selectedAppointment = Rxn<AppointmentEntry>();
+
+  bool get isDetailOpen => selectedAppointment.value != null;
+
+  void openAppointmentDetail(AppointmentEntry item) {
+    selectedAppointment.value = item;
+  }
+
+  void closeAppointmentDetail() {
+    selectedAppointment.value = null;
+  }
+
+  void onDetailNextPressed() {
+    Get.toNamed(Routes.BOOKING);
+  }
+}

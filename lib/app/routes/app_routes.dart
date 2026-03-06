@@ -20,6 +20,7 @@ abstract class Routes {
   static const BOOKING_SCHEDULE = _Paths.BOOKING_SCHEDULE;
   static const PROFILE = _Paths.PROFILE;
   static const HISTORY = _Paths.HISTORY;
+  static const APPOINTMENT = _Paths.APPOINTMENT;
 }
 
 abstract class _Paths {
@@ -41,4 +42,5 @@ abstract class _Paths {
   static const BOOKING_SCHEDULE = '/booking-schedule';
   static const PROFILE = '/profile';
   static const HISTORY = '/history';
+  static const APPOINTMENT = '/appointment';
 }

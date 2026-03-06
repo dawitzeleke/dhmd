@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:dhmd/app/routes/app_pages.dart';
 
 class AppointmentEntry {
@@ -44,10 +45,12 @@ class AppointmentController extends GetxController {
   ];
 
   final selectedAppointment = Rxn<AppointmentEntry>();
-  final viewStage = 0.obs; // 0=list, 1=detail, 2=actions
+  final viewStage = 0.obs; // 0=list, 1=detail, 2=actions, 3=reschedule-reason
+  final rescheduleReasonController = TextEditingController();
 
   bool get isDetailOpen => viewStage.value == 1;
   bool get isActionsOpen => viewStage.value == 2;
+  bool get isRescheduleReasonOpen => viewStage.value == 3;
 
   void openAppointmentDetail(AppointmentEntry item) {
     selectedAppointment.value = item;
@@ -57,6 +60,7 @@ class AppointmentController extends GetxController {
   void closeAppointmentDetail() {
     viewStage.value = 0;
     selectedAppointment.value = null;
+    rescheduleReasonController.clear();
   }
 
   void onDetailNextPressed() {
@@ -64,14 +68,27 @@ class AppointmentController extends GetxController {
   }
 
   void onReschedulePressed() {
-    Get.toNamed(Routes.BOOKING_SCHEDULE);
+    viewStage.value = 3;
   }
 
-  void onCancelPressed() {
+  void onCancelPressed() {}
+
+  void onConfirmCancelPressed() {
+    if (Get.isDialogOpen ?? false) {
+      Get.back();
+    }
     closeAppointmentDetail();
   }
 
+  void onRescheduleReasonNextPressed() {
+    Get.toNamed(Routes.BOOKING_SCHEDULE);
+  }
+
   bool onBackPressed() {
+    if (isRescheduleReasonOpen) {
+      viewStage.value = 2;
+      return false;
+    }
     if (isActionsOpen) {
       viewStage.value = 1;
       return false;
@@ -81,5 +98,11 @@ class AppointmentController extends GetxController {
       return false;
     }
     return true;
+  }
+
+  @override
+  void onClose() {
+    rescheduleReasonController.dispose();
+    super.onClose();
   }
 }

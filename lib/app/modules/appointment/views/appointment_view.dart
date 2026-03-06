@@ -7,11 +7,23 @@ import '../../home/views/widgets/home_search_section.dart';
 import '../../home/views/widgets/home_top_header.dart';
 import '../controllers/appointment_controller.dart';
 import 'widgets/appointment_actions_card.dart';
+import 'widgets/appointment_cancel_dialog.dart';
 import 'widgets/appointment_detail_card.dart';
 import 'widgets/appointment_list_card.dart';
+import 'widgets/appointment_reschedule_reason_card.dart';
 
 class AppointmentView extends GetView<AppointmentController> {
   const AppointmentView({super.key});
+
+  void _showCancelDialog() {
+    Get.dialog<void>(
+      AppointmentCancelDialog(
+        onConfirmCancel: controller.onConfirmCancelPressed,
+      ),
+      barrierDismissible: true,
+      barrierColor: Colors.black.withValues(alpha: 0.45),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +39,8 @@ class AppointmentView extends GetView<AppointmentController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (!controller.isDetailOpen &&
-                      !controller.isActionsOpen) ...[
+                      !controller.isActionsOpen &&
+                      !controller.isRescheduleReasonOpen) ...[
                     const HomeTopHeader(),
                     const HomeSearchSection(),
                     const SizedBox(height: 16),
@@ -75,8 +88,7 @@ class AppointmentView extends GetView<AppointmentController> {
                         ),
                       ),
                     ),
-                  ],
-                  if (controller.isActionsOpen) ...[
+                  ] else if (controller.isActionsOpen) ...[
                     const SizedBox(height: 18),
                     InkWell(
                       onTap: controller.onBackPressed,
@@ -112,8 +124,37 @@ class AppointmentView extends GetView<AppointmentController> {
                     AppointmentActionsCard(
                       item: controller.selectedAppointment.value!,
                       onReschedule: controller.onReschedulePressed,
-                      onCancel: controller.onCancelPressed,
+                      onCancel: _showCancelDialog,
                     ),
+                  ] else if (controller.isRescheduleReasonOpen) ...[
+                    const SizedBox(height: 18),
+                    InkWell(
+                      onTap: controller.onBackPressed,
+                      child: const Row(
+                        children: [
+                          Icon(
+                            Icons.arrow_back,
+                            size: 18,
+                            color: AppColors.primary,
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            'Reschedule Appointments',
+                            style: TextStyle(
+                              color: AppColors.primary,
+                              fontSize: 24,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 38),
+                    AppointmentRescheduleReasonCard(
+                      reasonController: controller.rescheduleReasonController,
+                      onNext: controller.onRescheduleReasonNextPressed,
+                    ),
+                    const SizedBox(height: 260),
                   ],
                   const SizedBox(height: 24),
                 ],

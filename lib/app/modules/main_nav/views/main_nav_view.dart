@@ -4,17 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/main_nav_controller.dart';
-import '../main_nav_config.dart';
 
 class MainNavView extends GetView<MainNavController> {
   const MainNavView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final items = MainNavConfig.items;
-
     return Obx(
       () {
+        final items = controller.items;
         final safeIndex = controller.selectedIndex.value.clamp(0, items.length - 1);
 
         return Scaffold(

@@ -7,33 +7,6 @@ import '../controllers/clinic_controller.dart';
 class ClinicHomeView extends GetView<ClinicController> {
   const ClinicHomeView({super.key});
 
-  static const List<_SpecialtyItem> _specialties = [
-    _SpecialtyItem(title: 'Neurology', doctorCount: 10, icon: Icons.psychology_rounded),
-    _SpecialtyItem(title: 'Cardiologist', doctorCount: 2, icon: Icons.favorite_rounded),
-    _SpecialtyItem(title: 'Dentistry', doctorCount: 1, icon: Icons.medical_services_rounded),
-  ];
-
-  static const List<_DoctorItem> _doctors = [
-    _DoctorItem(
-      name: 'Dr. Tesfaye Alemayehu',
-      imagePath: 'assets/images/doctor.png',
-      specialty: 'Cardiology',
-      subSpecialty: 'Interventional Cardiology',
-      experience: '10+ Years',
-      qualification: 'MD, Specialty Certification',
-      rating: 4,
-    ),
-    _DoctorItem(
-      name: 'Dr. Helina Alemayehu',
-      imagePath: 'assets/images/defence.png',
-      specialty: 'Endocrinology',
-      subSpecialty: 'Diabetes & Metabolic Disorders',
-      experience: '8 Years',
-      qualification: 'MD, Endocrinology Fellowship',
-      rating: 4,
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,12 +17,12 @@ class ClinicHomeView extends GetView<ClinicController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildHeader(),
-              const SizedBox(height: 20),
-              _buildCategoryFilters(),
+              const SizedBox(height: 16),
+              _buildSearchBar(),
               const SizedBox(height: 24),
-              _buildSpecialtySection(),
+              _buildRecentRequests(),
               const SizedBox(height: 24),
-              _buildRecommendedDoctors(),
+              _buildUpcomingSection(),
               const SizedBox(height: 100),
             ],
           ),
@@ -85,7 +58,7 @@ class ClinicHomeView extends GetView<ClinicController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Welcome, Ashenafi Mamo!',
+                  'Welcome, Ashenafi Mamo !',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -118,385 +91,522 @@ class ClinicHomeView extends GetView<ClinicController> {
     );
   }
 
-  Widget _buildCategoryFilters() {
-    return Obx(
-      () {
-        final index = controller.selectedCategoryIndex.value;
-        const labels = ['Adults', 'Children', 'Men'];
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            children: [
-              for (var i = 0; i < labels.length; i++)
-                Padding(
-                  padding: EdgeInsets.only(right: i < labels.length - 1 ? 12 : 0),
-                  child: GestureDetector(
-                    onTap: () => controller.setCategory(i),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                      decoration: BoxDecoration(
-                        color: index == i ? AppColors.primary : Colors.white,
-                        borderRadius: BorderRadius.circular(24),
-                        border: Border.all(
-                          color: index == i ? AppColors.primary : AppColors.primary.withValues(alpha: 0.5),
-                        ),
-                      ),
-                      child: Text(
-                        labels[i],
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: index == i ? Colors.white : const Color(0xFF1A1A1A),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildSpecialtySection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Specialty',
-                style: TextStyle(
-                  color: Color(0xFF1A1A1A),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: Text(
-                  'All',
-                  style: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 12),
-        SizedBox(
-          height: 140,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            itemCount: _specialties.length,
-            itemBuilder: (context, i) {
-              final item = _specialties[i];
-              return Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: _SpecialtyCard(
-                  title: item.title,
-                  doctorCount: item.doctorCount,
-                  icon: item.icon,
-                  onTap: () {},
-                ),
-              );
-            },
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildRecommendedDoctors() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Recommended Doctors',
-                style: TextStyle(
-                  color: Color(0xFF1A1A1A),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: Text(
-                  'All',
-                  style: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 12),
-        SizedBox(
-          height: 280,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            itemCount: _doctors.length,
-            itemBuilder: (context, i) {
-              return Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: _DoctorCard(item: _doctors[i], onTap: () {}),
-              );
-            },
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _SpecialtyItem {
-  const _SpecialtyItem({
-    required this.title,
-    required this.doctorCount,
-    required this.icon,
-  });
-  final String title;
-  final int doctorCount;
-  final IconData icon;
-}
-
-class _SpecialtyCard extends StatelessWidget {
-  const _SpecialtyCard({
-    required this.title,
-    required this.doctorCount,
-    required this.icon,
-    required this.onTap,
-  });
-
-  final String title;
-  final int doctorCount;
-  final IconData icon;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
+  Widget _buildSearchBar() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
-        width: 120,
-        padding: const EdgeInsets.all(16),
+        height: 48,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
+          color: const Color(0xFFF3F4F6),
+          borderRadius: BorderRadius.circular(24),
           border: Border.all(color: const Color(0xFFE5E7EB)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.04),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: const Row(
           children: [
-            Icon(icon, size: 40, color: AppColors.primary),
-            const SizedBox(height: 12),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: AppColors.primary,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
+            Expanded(
+              child: TextField(
+                decoration: InputDecoration(
+                  isCollapsed: true,
+                  border: InputBorder.none,
+                  hintText: 'Search...',
+                  hintStyle: TextStyle(
+                    color: Color(0xFF9CA3AF),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                style: TextStyle(color: Color(0xFF374151), fontSize: 14),
               ),
             ),
-            const SizedBox(height: 4),
-            Text(
-              '$doctorCount Doctors',
-              style: TextStyle(
-                color: Colors.grey[600],
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+            Icon(Icons.search_rounded, size: 22, color: Color(0xFF9CA3AF)),
           ],
         ),
       ),
     );
   }
-}
 
-class _DoctorItem {
-  const _DoctorItem({
-    required this.name,
-    required this.imagePath,
-    required this.specialty,
-    required this.subSpecialty,
-    required this.experience,
-    required this.qualification,
-    required this.rating,
-  });
-  final String name;
-  final String imagePath;
-  final String specialty;
-  final String subSpecialty;
-  final String experience;
-  final String qualification;
-  final double rating;
-}
-
-class _DoctorCard extends StatelessWidget {
-  const _DoctorCard({required this.item, required this.onTap});
-
-  final _DoctorItem item;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 200,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: const Color(0xFFE5E7EB)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.04),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
+  Widget _buildRecentRequests() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Recent Requests',
+            style: TextStyle(
+              color: Color(0xFF1A1A1A),
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
             ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                  child: Image.asset(
-                    item.imagePath,
-                    width: double.infinity,
-                    height: 120,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(
-                      height: 120,
-                      color: AppColors.primary.withValues(alpha: 0.2),
-                      child: const Icon(Icons.person, color: AppColors.primary, size: 48),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 8,
-                  left: 8,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF22C55E),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: const Text(
-                      'Available',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 11,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Overview of the latest patient consultation requests submitted for review, approval, and specialist assignment by the clinic head.',
+            style: TextStyle(
+              color: Colors.grey[600],
+              fontSize: 13,
+              fontWeight: FontWeight.w400,
+              height: 1.35,
             ),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              color: AppColors.primary,
-              child: Center(
+          ),
+          const SizedBox(height: 16),
+          _RecentRequestCard(
+            patientName: 'Gl Kebede Tesema',
+            subtitle: 'VIP Patient',
+            date: 'Monday, Feb 23',
+            time: '12:00 am',
+            onViewDetail: () {},
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildUpcomingSection() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Upcoming Consultation requests',
+                style: TextStyle(
+                  color: Color(0xFF1A1A1A),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {},
                 child: Text(
-                  item.name,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  'All',
+                  style: TextStyle(
+                    color: AppColors.primary,
                     fontSize: 14,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            ],
+          ),
+          const SizedBox(height: 12),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              const spacing = 12.0;
+              final width = constraints.maxWidth;
+              final itemWidth = (width - spacing) / 2;
+
+              final cards = <Widget>[
+                _UpcomingCard(
+                  patientName: 'Gl Kebede Tesema',
+                  subtitle: 'VIP Patient',
+                  date: '15/02/2026',
+                  time: '08:30 AM',
+                  drugAllergy: 'No',
+                  note: 'Yes The Patient Is Presently On Active Treatment Under MS.',
+                  daysAgo: '02 Days Ago',
+                  onReview: () {},
+                ),
+                _UpcomingCard(
+                  patientName: 'Dawit Bekele',
+                  subtitle: 'VIP Patient',
+                  date: '15/02/2026',
+                  time: '08:30 AM',
+                  drugAllergy: 'No',
+                  note: 'Potient is Receiving Fact-Treatment Cure And Adhering...',
+                  daysAgo: '02 Days Ago',
+                  onReview: () {},
+                ),
+              ];
+
+              return Wrap(
+                spacing: spacing,
+                runSpacing: spacing,
                 children: [
-                  Text(
-                    item.specialty,
-                    style: const TextStyle(
-                      color: Color(0xFF1A1A1A),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
+                  for (final c in cards)
+                    SizedBox(
+                      width: itemWidth,
+                      child: c,
                     ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    item.subSpecialty,
-                    style: const TextStyle(
-                      color: Color(0xFF1A1A1A),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
+                ],
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _RecentRequestCard extends StatelessWidget {
+  final String patientName;
+  final String subtitle;
+  final String date;
+  final String time;
+  final VoidCallback onViewDetail;
+
+  const _RecentRequestCard({
+    required this.patientName,
+    required this.subtitle,
+    required this.date,
+    required this.time,
+    required this.onViewDetail,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primary.withValues(alpha: 0.3),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      patientName,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    item.experience,
-                    style: const TextStyle(
-                      color: Color(0xFF1A1A1A),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
+                    const SizedBox(height: 4),
+                    Text(
+                      subtitle,
+                      style: TextStyle(
+                        color: Colors.white.withValues(alpha: 0.9),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
+                  ],
+                ),
+              ),
+              ClipOval(
+                child: Image.asset(
+                  'assets/images/doctor.png',
+                  width: 56,
+                  height: 56,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => Container(
+                    width: 56,
+                    height: 56,
+                    color: Colors.white24,
+                    child: const Icon(Icons.person, color: Colors.white, size: 28),
                   ),
-                  const SizedBox(height: 2),
-                  Text(
-                    item.qualification,
-                    style: const TextStyle(
-                      color: AppColors.primary,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.2),
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    const Icon(Icons.calendar_today, color: Colors.white, size: 16),
+                    const SizedBox(width: 8),
+                    Text(
+                      date,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Icon(Icons.access_time, color: Colors.white, size: 16),
+                    const SizedBox(width: 8),
+                    Text(
+                      time,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          Center(
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: onViewDetail,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: AppColors.primary,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: List.generate(5, (i) {
-                      final filled = item.rating > i;
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 2),
-                        child: Icon(
-                          filled ? Icons.star_rounded : Icons.star_outline_rounded,
-                          size: 16,
-                          color: filled ? const Color(0xFFFBBF24) : Colors.grey[400],
+                  elevation: 0,
+                ),
+                child: const Text('View Detail', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _UpcomingCard extends StatelessWidget {
+  final String patientName;
+  final String subtitle;
+  final String date;
+  final String time;
+  final String drugAllergy;
+  final String note;
+  final String daysAgo;
+  final VoidCallback onReview;
+
+  const _UpcomingCard({
+    required this.patientName,
+    required this.subtitle,
+    required this.date,
+    required this.time,
+    required this.drugAllergy,
+    required this.note,
+    required this.daysAgo,
+    required this.onReview,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: const Color(0xFFE5E7EB)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 8,
+                height: 8,
+                margin: const EdgeInsets.only(top: 6),
+                decoration: const BoxDecoration(
+                  color: Color(0xFF22C55E),
+                  shape: BoxShape.circle,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Text(
+                'Active',
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              // const Spacer(),
+              // Text(
+              //   daysAgo,
+              //   style: TextStyle(
+              //     color: Colors.grey[600],
+              //     fontSize: 12,
+              //     fontWeight: FontWeight.w400,
+              //   ),
+              // ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color: AppColors.primarySolid,
+              borderRadius: BorderRadius.circular(38),
+            ),
+            child: Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        patientName,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
                         ),
-                      );
-                    }),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        subtitle,
+                        style: TextStyle(
+                          color: Colors.white.withValues(alpha: 0.9),
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(width: 18),
+                  ClipOval(
+                    child: Image.asset(
+                      'assets/images/doctor.png',
+                      width: 54,
+                      height: 54,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) => Container(
+                        width: 44,
+                        height: 44,
+                        color: Colors.white24,
+                        child: const Icon(Icons.person, color: Colors.white, size: 22),
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 12),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: AppColors.background,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Date:', style: _labelStyle),
+                              const SizedBox(height: 4),
+                              Text('Time/Token:', style: _labelStyle),
+                              const SizedBox(height: 4),
+                              Text('Drug Allergy:', style: _labelStyle),
+                            ],
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(date, style: _valueStyle),
+                                const SizedBox(height: 4),
+                                Text(time, style: _valueStyle),
+                                const SizedBox(height: 4),
+                                Text(drugAllergy, style: _valueStyle),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      if (note.isNotEmpty) ...[
+                        const SizedBox(height: 8),
+                        Text(
+                          note,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: 12,
+                            height: 1.3,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 14),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: onReview,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primary,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      elevation: 0,
+                    ),
+                    child: const Text('Review', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
+
+  static const _labelStyle = TextStyle(
+    color: Color(0xFF6B7280),
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const _valueStyle = TextStyle(
+    color: Color(0xFF1A1A1A),
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
 }

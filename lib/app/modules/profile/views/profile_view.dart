@@ -70,7 +70,7 @@ class ProfileView extends GetView<ProfileController> {
                       icon: Icons.settings_rounded,
                       title: 'Settings',
                       subtitle: 'Manage & Settings',
-                      onTap: () {},
+                      onTap: () => Get.toNamed(Routes.SETTINGS),
                     ),
                   ],
                 ),

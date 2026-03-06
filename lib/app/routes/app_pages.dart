@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 import '../modules/profile/views/account_information.dart';
 import '../modules/profile/views/edit_account.dart';
+import '../modules/profile/views/settings.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -81,6 +82,10 @@ class AppPages {
     GetPage(
       name: _Paths.EDIT_ACCOUNT,
       page: () => const EditAccountView(),
+    ),
+    GetPage(
+      name: _Paths.SETTINGS,
+      page: () => const SettingsView(),
     ),
   ];
 }

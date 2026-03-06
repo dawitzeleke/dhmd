@@ -14,6 +14,7 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const ACCOUNT_INFORMATION = _Paths.ACCOUNT_INFORMATION;
   static const EDIT_ACCOUNT = _Paths.EDIT_ACCOUNT;
+  static const SETTINGS = _Paths.SETTINGS;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const HOME = '/home';
   static const ACCOUNT_INFORMATION = '/account-information';
   static const EDIT_ACCOUNT = '/edit-account';
+  static const SETTINGS = '/settings';
 }

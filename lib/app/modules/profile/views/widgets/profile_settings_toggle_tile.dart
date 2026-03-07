@@ -22,17 +22,19 @@ class ProfileSettingsToggleTile extends StatelessWidget {
           Expanded(
             child: Text(
               title,
-              style: const TextStyle(fontSize: 16, color: Color(0xFF1F2430)),
+              style: const TextStyle(fontSize: 14, color: Color(0xFF1F2430)),
             ),
           ),
-          Switch(
-            value: value,
-            onChanged: onChanged,
-            activeColor: Colors.white,
-            activeTrackColor: AppColors.primary,
-            inactiveTrackColor: const Color(0xFFDBE0E8),
-            inactiveThumbColor: Colors.white,
-            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          SizedBox(
+              child: Switch(
+                value: value,
+                onChanged: onChanged,
+                activeColor: Colors.white,
+                activeTrackColor: AppColors.primary,
+                inactiveTrackColor: const Color(0xFFDBE0E8),
+                inactiveThumbColor: Colors.white,
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
           ),
         ],
       ),

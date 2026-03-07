@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProfileSettingsActionTile extends StatelessWidget {
-  final IconData icon;
+  final String icon;
   final Color iconBg;
   final String title;
   final VoidCallback? onTap;
@@ -26,20 +26,28 @@ class ProfileSettingsActionTile extends StatelessWidget {
               width: 38,
               height: 38,
               decoration: BoxDecoration(color: iconBg, shape: BoxShape.circle),
-              child: Icon(icon, color: Colors.white, size: 20),
+              child: Image.asset(
+                icon,
+                color: Colors.white,
+                errorBuilder: (_, __, ___) => const Icon(
+                  Icons.lock_outline,
+                  color: Colors.white,
+                  size: 20,
+                ),
+              ),
             ),
             const SizedBox(width: 14),
             Expanded(
               child: Text(
                 title,
                 style: const TextStyle(
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: Color(0xFF1F2430),
                 ),
               ),
             ),
-            const Icon(Icons.chevron_right, color: Color(0xFF2A3140), size: 26),
+            const Icon(Icons.chevron_right, color: Color(0xFF2A3140), size: 20),
           ],
         ),
       ),

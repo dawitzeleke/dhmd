@@ -357,7 +357,7 @@ class ProfileView extends GetView<ProfileController> {
                               'Profile',
                               style: TextStyle(
                                 color: AppColors.primary,
-                                fontSize: 31,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -368,32 +368,32 @@ class ProfileView extends GetView<ProfileController> {
                       const Text(
                         'Account settings',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF253045),
                         ),
                       ),
                       const SizedBox(height: 18),
                       const ProfileSettingsActionTile(
-                        icon: Icons.lock_outline,
+                        icon: "assets/images/settings/lock.png",
                         iconBg: Color(0xFFFF6D6D),
                         title: 'Change Password',
                       ),
-                      const Divider(height: 1, color: Color(0xFFDCE5F0)),
+                      const Divider(height: 0.2, color: Color(0xFFDCE5F0)),
                       const ProfileSettingsActionTile(
-                        icon: Icons.notifications_none,
+                        icon: "assets/images/settings/notification.png",
                         iconBg: Color(0xFF2FA45E),
                         title: 'Notifications',
                       ),
                       const Divider(height: 1, color: Color(0xFFDCE5F0)),
                       const ProfileSettingsActionTile(
-                        icon: Icons.pie_chart_outline,
+                        icon: "assets/images/settings/statistics.png",
                         iconBg: AppColors.primary,
                         title: 'Statistics',
                       ),
                       const Divider(height: 1, color: Color(0xFFDCE5F0)),
                       const ProfileSettingsActionTile(
-                        icon: Icons.people_alt_outlined,
+                        icon: "assets/images/settings/about.png",
                         iconBg: Color(0xFFF6A147),
                         title: 'About us',
                       ),
@@ -402,7 +402,7 @@ class ProfileView extends GetView<ProfileController> {
                       const Text(
                         'More options',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 16,
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF253045),
                         ),
@@ -458,13 +458,13 @@ class ProfileView extends GetView<ProfileController> {
                       ),
                       const Divider(height: 1, color: Color(0xFFDCE5F0)),
                       const SizedBox(height: 80),
-                      const Center(
+                      Center(
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.logout, color: Colors.black, size: 24),
-                            SizedBox(width: 10),
-                            Text(
+                          Image.asset("assets/images/settings/logout.png", width: 20, height: 20),
+                            const SizedBox(width: 10),
+                            const Text(
                               'Logout',
                               style: TextStyle(
                                 fontSize: 20,
